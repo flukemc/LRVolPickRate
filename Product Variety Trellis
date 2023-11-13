@@ -22,8 +22,8 @@ for variety in df["Product Variety"].unique():
     df_filtered = df_encoded[df_encoded[f"Product Variety_{variety}"] == 1]
 
     # Split the filtered data into features (X) and target variable (y)
-    X = df_filtered.drop("Yield kg", axis=1)
-    y = df_filtered["Yield kg"]
+    X = df_filtered.drop("Pick Rate Kgs/Hr (Picker Only – Derived Kgs)", axis=1)
+    y = df_filtered["Pick Rate Kgs/Hr (Picker Only – Derived Kgs)"]
 
     # Split the data into training and testing sets
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
@@ -41,7 +41,7 @@ for variety in df["Product Variety"].unique():
 
     # Visualize the results for each Product Variety separately
     sns.scatterplot(x=y_test, y=y_pred)
-    plt.xlabel(f"Actual Yield kg - {variety}")
-    plt.ylabel(f"Predicted Yield kg - {variety}")
-    plt.title(f"Linear Regression: Actual vs Predicted Yield - {variety}")
+    plt.xlabel(f"Actual Pick Rate Kgs/Hr - {variety}")
+    plt.ylabel(f"Predicted Pick Rate Kgs/Hr - {variety}")
+    plt.title(f"Linear Regression: Actual vs Predicted Pick Rate - {variety}")
     plt.show()
